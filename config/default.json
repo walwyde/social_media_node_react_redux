@@ -1,0 +1,6 @@
+{
+  "mongooseURI": "mongodb://localhost/social_media",
+  "jwtSecret": "javascript must pay",
+  "githubClientId":"1425008b8e5877b79df0",
+  "githubClientSecret":"d8e456a2d1351f48a2942ed5c3d00d64476d9c81"
+}

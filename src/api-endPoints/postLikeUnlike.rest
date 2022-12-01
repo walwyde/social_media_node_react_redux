@@ -1,0 +1,9 @@
+### like a post
+
+PUT http://localhost:5000/api/posts/likes/634d57029ccd44d640d2d301 HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiJtYXJ5YW1hIiwiaWQiOiI2MzRkM2E2YzcyYmFjNDc1YWI5OTgyZGQifSwiaWF0IjoxNjY2MDE2MTIyLCJleHAiOjE2NjYwMjMzMjJ9.Dud8BohOJ5GT3jn5Nbt1KHRCBGN0OCuwK4kPF7vT_kI
+
+### unlike a post
+
+PUT http://localhost:5000/api/posts/unlike/634d57029ccd44d640d2d301 HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiJtYXJ5YW1hIiwiaWQiOiI2MzRkM2E2YzcyYmFjNDc1YWI5OTgyZGQifSwiaWF0IjoxNjY2MDE2MTIyLCJleHAiOjE2NjYwMjMzMjJ9.Dud8BohOJ5GT3jn5Nbt1KHRCBGN0OCuwK4kPF7vT_kI

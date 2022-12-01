@@ -1,0 +1,101 @@
+
+GET http://localhost:5000/api/posts HTTP/1.1
+
+### Get user Profile
+GET http://localhost:5000/api/profile/me HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM0ZDNhNmM3MmJhYzQ3NWFiOTk4MmRkIn0sImlhdCI6MTY2NjAwNTYxMywiZXhwIjoxNjY2MDEyODEzfQ.Z5E5sPcsPTeVh_OhNWQrY0wYcWgb-z75ArYx5UTMyJs
+### create new user profile
+POST http://localhost:5000/api/profile/me HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM0ZDNhNmM3MmJhYzQ3NWFiOTk4MmRkIn0sImlhdCI6MTY2NjAwNTYxMywiZXhwIjoxNjY2MDEyODEzfQ.Z5E5sPcsPTeVh_OhNWQrY0wYcWgb-z75ArYx5UTMyJs
+***
+Content-Type: application/json
+
+{
+  "company": "green tech",
+  "website": "http://null.com",
+  "location": "jos South, plateau state",
+  "status": "employed",
+  "skills": "Data Analysis",
+  "bio": "Data Analyst With more than 7 years experience",
+  "githubusername": "marcee",
+  "twitter": "https://twitter.com/marcee",
+  "youtube": "https://youtube.com/marcee",
+  "facebook": "https://facebook.com/m_maryam",
+  "instagram": "https://instagram.com/real_marcee"
+}
+
+### edit user profile 
+
+PUT http://localhost:5000/api/profile/me HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiJ5b2JlIG1hcnlhbWEiLCJpZCI6IjYzNDk0YWU3ZmZiMWU3Mzc2ZWI4Y2EwNCJ9LCJpYXQiOjE2NjU5MjY1OTMsImV4cCI6MTY2NTkzMzc5M30.2b6k0WnQj0Rw7aGmRFzex_b5tUrsCXroegM-rp-Ynks
+***
+Content-Type: application/json 
+
+{
+  "company": "online things tech company"
+  
+}
+
+### Add user profile experience
+PUT http://localhost:5000/api/profile/experience HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM0ZDNhNmM3MmJhYzQ3NWFiOTk4MmRkIn0sImlhdCI6MTY2NjAwNTYxMywiZXhwIjoxNjY2MDEyODEzfQ.Z5E5sPcsPTeVh_OhNWQrY0wYcWgb-z75ArYx5UTMyJs
+***
+Content-Type: application/json
+
+{
+  "title": "Data Analyst",
+  "company": "techno company",
+  "location": "Maiduguri Ng",
+  "from": "8-8-2015",
+  "to": "9-9-2019",
+  "description": "Senior Data Analyst"
+}
+
+### delete user profile experience
+DELETE http://localhost:5000/api/profile/experience/634c383fc63fa5ec739bb499 HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiJ5b2JlIG1hcnlhbWEiLCJpZCI6IjYzNDk0YWU3ZmZiMWU3Mzc2ZWI4Y2EwNCJ9LCJpYXQiOjE2NjU5MzcyMjksImV4cCI6MTY2NTk0NDQyOX0.3tdTqHPkB6m7fNtW5kqiBqs847kiJHnChbjYH7ApYPU
+
+### Add user profile education
+PUT http://localhost:5000/api/profile/education HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM0ZDNhNmM3MmJhYzQ3NWFiOTk4MmRkIn0sImlhdCI6MTY2NjAwNTYxMywiZXhwIjoxNjY2MDEyODEzfQ.Z5E5sPcsPTeVh_OhNWQrY0wYcWgb-z75ArYx5UTMyJs
+***
+Content-Type: application/json
+
+{
+  "school": "ATAPOLY",
+  "degree": "HND",
+  "fieldofstudy": "Micro Biology",
+  "from": "8-8-2015",
+  "to": "9-9-2019",
+  "description": "HND honors in MCB"
+}
+### edit user profile education
+PUT http://localhost:5000/api/profile/education/edu_id HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiJ5b2JlIG1hcnlhbWEiLCJpZCI6IjYzNDk0YWU3ZmZiMWU3Mzc2ZWI4Y2EwNCJ9LCJpYXQiOjE2NjU5MzcyMjksImV4cCI6MTY2NTk0NDQyOX0.3tdTqHPkB6m7fNtW5kqiBqs847kiJHnChbjYH7ApYPU
+***
+Content-Type: application/json
+
+{
+  "school": "test education edit",
+  "degree": "bsc",
+  "fieldofstudy": "computer science",
+  "from": "8-8-2015",
+  "to": "9-9-2019",
+  "description": "bsc honors in computer science"
+}
+### delete user profile education
+DELETE http://localhost:5000/api/profile/education/634c5e467561700c65c9d279 HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiJ5b2JlIGF1d2FsIiwiaWQiOiI2MzRjMjhlYjBkNTM1Y2M1NWYwYjNjM2QifSwiaWF0IjoxNjY1OTQ5MDQxLCJleHAiOjE2NjU5NTYyNDF9.RnoWgu1GufaVSRP32M2-QlB-lCuj0IR8qtqyFC_oO78
+### get user profile by id
+GET http://localhost:5000/api/profile/user/63494ae7ffb1e7376eb8ca04 HTTP/1.1
+
+### get all profiles
+GET http://localhost:5000/api/profile/users HTTP/1.1
+
+### delete profile and it's user
+DELETE http://localhost:5000/api/profile HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiJ5b2JlIG1hcnlhbWEiLCJpZCI6IjYzNDk0YWU3ZmZiMWU3Mzc2ZWI4Y2EwNCJ9LCJpYXQiOjE2NjU5MzcyMjksImV4cCI6MTY2NTk0NDQyOX0.3tdTqHPkB6m7fNtW5kqiBqs847kiJHnChbjYH7ApYPU
+
+### get github repos
+
+GET http://localhost:5000/api/profile/github/walwyde HTTP/1.1

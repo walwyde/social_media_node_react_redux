@@ -1,0 +1,17 @@
+POST http://localhost:5000/api/posts HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiJ5b2JlIGF1d2FsIiwiaWQiOiI2MzRjMjhlYjBkNTM1Y2M1NWYwYjNjM2QifSwiaWF0IjoxNjY2MDEyNzc2LCJleHAiOjE2NjYwMTk5NzZ9.nKBCdTSeM2W5zT6qbzmkDQQvjUpAGIfNs9zU21y2_nQ
+***
+Content-Type: application/json
+
+{
+  "text": "new post three"
+}
+
+### delete post
+DELETE http://localhost:5000/api/posts//634d5d947a5ad2185b1c6137 HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiJ5b2JlIGF1d2FsIiwiaWQiOiI2MzRjMjhlYjBkNTM1Y2M1NWYwYjNjM2QifSwiaWF0IjoxNjY2MDIyNjE0LCJleHAiOjE2NjYwMjk4MTR9.-Fv36FBMqnWjc0ylnJmlruI8obxM8iTnRz75YxhVOH8
+***
+
+### get all posts
+
+GET http://localhost:5000/api/posts HTTP/1.1

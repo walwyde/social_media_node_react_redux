@@ -1,0 +1,12 @@
+POST http://localhost:5000/api/posts/comments/634d67c34cfa627048f12da4 HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiJtYXJ5YW1hIiwiaWQiOiI2MzRkM2E2YzcyYmFjNDc1YWI5OTgyZGQifSwiaWF0IjoxNjY2MDI0MDg5LCJleHAiOjE2NjYwMzEyODl9.KgC8mVF5cREIGxDn7jA84cEuvZcN9fmIJ_eZmZD1rJU
+***
+content-type: application/json
+
+{
+  "text": "delete me. now......"
+}
+
+###
+DELETE http://localhost:5000/api/posts/634d67c34cfa627048f12da4/comments/634d84c2801acb2c14036cfb HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiJ5b2JlIGF1d2FsIiwiaWQiOiI2MzRjMjhlYjBkNTM1Y2M1NWYwYjNjM2QifSwiaWF0IjoxNjY2MDI1MTYzLCJleHAiOjE2NjYwMzIzNjN9.4TkK6bz9AYaQg4jhWEdRDxYZ6k3C4j0_O63PEVGqNqY

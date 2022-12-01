@@ -1,0 +1,28 @@
+GET http://localhost:5000/api/auth 
+x-auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM0OTRhZTdmZmIxZTczNzZlYjhjYTA0In0sImlhdCI6MTY2NTc0NzY4NywiZXhwIjoxNjY1NzU0ODg3fQ.7Pcasgkd2vD5w_c1xb9Sc1L1Y4V1iQfvyPY-yDodUsc
+
+
+### signIn user
+POST http://localhost:5000/api/auth HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "walwyde@gmail.com",
+  "password": "password"
+}
+### create new user
+POST http://localhost:5000/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "maryama",
+  "email": "momusamohammed@gmail.com",
+  "password": "password"
+}
+
+### get user by id
+get http://localhost:5000/api/users/634c28eb0d535cc55f0b3c3d  HTTP/1.1
+
+### get all users
+get http://localhost:5000/api/users HTTP/1.1
+

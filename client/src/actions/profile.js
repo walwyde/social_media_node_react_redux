@@ -1,0 +1,165 @@
+import axios from "axios";
+import {
+  load_profile,
+  profile_error,
+  delete_experience,
+  delete_education,
+  delete_account,
+  clear_profile,
+  delete_profile_error
+} from "./types";
+import { setAlert } from "../actions/setAlert";
+
+export const loadCurrentProfile = () => async (dispatch) => {
+  try {
+    const res = await axios.get("/api/profile/me");
+
+    dispatch({
+      type: load_profile,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: profile_error,
+    });
+  }
+};
+
+export const createProfile =
+  (profiledata, history, edit = false) =>
+  async (dispatch) => {
+    const options = {
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+    };
+
+    const body = JSON.stringify(profiledata);
+    try {
+      const res = edit
+        ? await axios.put("api/profile/me", body, options)
+        : await axios.post("/api/profile/me", body, options);
+
+      console.log(res);
+
+      if (!edit) history.push("/dashboard");
+
+      dispatch({
+        type: load_profile,
+        payload: res.data,
+      });
+      dispatch(
+        setAlert(edit ? `Profile Updated` : "Profile Created", "success")
+      );
+    } catch (err) {
+      console.log(err);
+      const errors = err.response.data.errors;
+
+      if (errors)
+        return errors.forEach((error) =>
+          dispatch(setAlert(error.msg, "danger"))
+        );
+      console.log(err.response);
+      dispatch({
+        type: profile_error,
+      });
+      dispatch(setAlert(err.response.data, "danger"));
+    }
+  };
+export const addEdu = (data, history) => async (dispatch) => {
+  const options = {
+    headers: {
+      "Content-Type": "application/json;charset=UTF-8",
+    },
+  };
+  const body = JSON.stringify(data);
+  try {
+    const res = await axios.put("api/profile/education", body, options);
+
+    history.push("/dashboard");
+
+    console.log(`func ${history}`);
+
+    dispatch({
+      type: load_profile,
+      payload: res.data,
+    });
+    dispatch(setAlert("Profile Education Added", "success"));
+  } catch (err) {
+    dispatch(setAlert(err.statusText, "danger"));
+  }
+};
+export const addExp = (data, history) => async (dispatch) => {
+  const options = {
+    headers: {
+      "Content-Type": "application/json;charset=UTF-8",
+    },
+  };
+  const body = JSON.stringify(data);
+  try {
+    const res = await axios.put("api/profile/experience", body, options);
+
+    history.push("/dashboard");
+
+    console.log(history, res);
+
+    dispatch({
+      type: load_profile,
+      payload: res.data,
+    });
+    dispatch(setAlert("Profile Experience Added", "success"));
+  } catch (err) {
+    console.log(err.response);
+    dispatch(setAlert(err.statusText, "danger"));
+  }
+};
+
+export const deleteExperience = (exp_id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(`/api/profile/experience/${exp_id}`);
+    console.log(res);
+    dispatch({
+      type: delete_experience,
+      payload: res.data,
+    });
+    dispatch(setAlert("Experience Deleted", "success"));
+  } catch (err) {
+    dispatch(setAlert(err.response.data, "danger"));
+  }
+};
+
+export const deleteEducation = (edu_id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(`/api/profile/education/${edu_id}`);
+
+    dispatch({
+      type: delete_education,
+      payload: res.data,
+    });
+    dispatch(setAlert("Education Deleted", "success"));
+  } catch (err) {
+    dispatch(setAlert(err.response.data, "danger"));
+  }
+}
+export const deleteAccount = () => async (dispatch) => {
+  if (window.confirm("Are you sure? This can NOT be undone!")) {
+    try {
+      await axios.delete("/api/profile/me");
+
+      dispatch({
+        type: delete_account,
+      });
+      dispatch({
+        type: clear_profile,
+      })
+      dispatch(setAlert("Your account has been permanently deleted"));
+    } catch (err) {
+      dispatch(setAlert(err.response.data, "danger"));
+      dispatch({
+        type: delete_profile_error,
+        errors: err.response.data
+      })
+    }
+  }
+}
