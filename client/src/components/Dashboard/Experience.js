@@ -31,11 +31,11 @@ const Experience = ({
               <td>{exp.company}</td>
               <td className="hide-sm">{exp.title}</td>
               <td className="hide-sm">
-                <Moment format="dd-mm-yy">{exp.from}</Moment> -{" "}
+                <Moment format="YY-MM-DD">{exp.from}</Moment> -{" "}
                 {exp.current ? (
                   "Now"
                 ) : (
-                  <Moment format="dd-mm-yy">{exp.to}</Moment>
+                  <Moment format="YY-MM-DD">{exp.to}</Moment>
                 )}
               </td>
               <td>

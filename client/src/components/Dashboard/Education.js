@@ -24,11 +24,11 @@ function Education({ profile: { profile, loading }, deleteEducation }) {
               <td>{edu.school}</td>
               <td className="hide-sm">{edu.degree}</td>
               <td className="hide-sm">
-                <Moment format="dd-mm-yy">{edu.from}</Moment> -
+                <Moment format="YY-MM-DD">{edu.from}</Moment> -
                 {edu.current ? (
                   "Now"
                 ) : (
-                  <Moment format="dd-mm-yy">{edu.to}</Moment>
+                  <Moment format="YY-MM-DD">{edu.to}</Moment>
                 )}
               </td>
               <td>

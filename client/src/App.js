@@ -17,6 +17,7 @@ import CreateProfile from "./components/Dashboard/dasboardForms/CreateProfile";
 import EditProfile from "./components/Dashboard/dasboardForms/Edit-profile";
 import AddEducation from "./components/Dashboard/dasboardForms/Add-education";
 import AddExperience from "./components/Dashboard/dasboardForms/AddExperience";
+import Profiles from "./components/profiles/Profiles";
 
 if (localStorage.token) {
   setAxiosHeader(localStorage.token);
@@ -38,6 +39,7 @@ const App = () => {
               <Switch>
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
+                <Route exact path="/profiles" component={Profiles} />
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
                 <PrivateRoute
                   exact
