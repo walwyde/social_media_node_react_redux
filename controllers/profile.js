@@ -24,9 +24,12 @@ exports.getProfile = async (req, res) => {
 };
 exports.getAllProfiles = async (req, res) => {
   try {
-    const profiles = await Profile.find();
+    const profiles = await Profile.find().populate("user", [
+      "name",
+      "avatar",
+    ]);
+    
     if (!profiles) return res.status(404).json("profiles not found");
-
     res.json(profiles);
   } catch (err) {
     console.log(err.message);
@@ -208,12 +211,11 @@ exports.addEducation = async (req, res) => {
 
   let { school, degree, fieldofstudy, from, to, current, description } =
     req.body;
-    console.log(req.body)
+  console.log(req.body);
 
-    if (!to || to === "" || to === null) current = true;
+  if (!to || to === "" || to === null) current = true;
 
   try {
-
     const newEdu = {
       school,
       degree,

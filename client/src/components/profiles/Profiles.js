@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { spinner } from "../layouts/Spinner";
+import { Spinner } from "../layouts/Spinner";
 import { getProfiles } from "../../actions/profile";
 import ProfileItem from "./ProfileItem";
 
@@ -9,10 +9,10 @@ function profiles({ getProfiles, profile: { loading, profiles } }) {
   useEffect(() => {
     getProfiles();
   }, []);
-  return;
+  return (
   <Fragment>
     {loading ? (
-      <spinner />
+      < Spinner />
     ) : (
       <Fragment>
         <h1 className="large text-primary">Developers</h1>
@@ -22,7 +22,7 @@ function profiles({ getProfiles, profile: { loading, profiles } }) {
         </p>
         <div className="profiles">
           {profiles.length > 0 ? (
-            profiles.map((profile, index) => (
+            profiles.map( profile => (
               <ProfileItem key={profile._id} profile={profile} />
             ))
           ) : (
@@ -31,7 +31,7 @@ function profiles({ getProfiles, profile: { loading, profiles } }) {
         </div>
       </Fragment>
     )}
-  </Fragment>;
+  </Fragment>);
 }
 
 profiles.propTypes = {

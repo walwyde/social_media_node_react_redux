@@ -102,17 +102,20 @@ export const getProfiles = () => async (dispatch) => {
       type: clear_profile,
     });
 
-    const profiles = await axios.get("api/profiles");
-    const data = await JSON.parse(profiles);
+    const res = await axios.get("api/profile/users");
+    // const data = JSON.parse(res);
+    console.log(res)
 
     dispatch({
       type: load_profiles,
-      payload: data,
+      payload: res.data,
     });
   } catch (err) {
+    console.log(err)
+
     dispatch({
       type: profile_error,
-      payload: err.response.data.statusText,
+      payload: err.response,
     });
   }
 };

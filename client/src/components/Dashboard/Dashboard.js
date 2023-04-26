@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Experience from "./Experience";
 import Education from "./Education";
-import { spinner } from "../layouts/Spinner";
+import { Spinner } from "../layouts/Spinner";
 import DashboardActions from "./DashboardActions";
 import { deleteAccount } from "../../actions/profile";
 
@@ -19,7 +19,7 @@ const Dashboard = ({
     loadCurrentProfile();
   }, []);
   return loading && profile === null ? (
-    spinner()
+    Spinner()
   ) : (
     <Fragment>
       <h1 className="large text-primary">Dashboard</h1>

@@ -1,7 +1,7 @@
 import React from "react";
 import loading from './loading2.gif'
 
-  export function spinner() {
+  export function Spinner() {
     return <img
       src={loading}
       alt="loading . . ."
