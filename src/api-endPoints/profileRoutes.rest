@@ -87,7 +87,7 @@ Content-Type: application/json
 DELETE http://localhost:5000/api/profile/education/634c5e467561700c65c9d279 HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiJ5b2JlIGF1d2FsIiwiaWQiOiI2MzRjMjhlYjBkNTM1Y2M1NWYwYjNjM2QifSwiaWF0IjoxNjY1OTQ5MDQxLCJleHAiOjE2NjU5NTYyNDF9.RnoWgu1GufaVSRP32M2-QlB-lCuj0IR8qtqyFC_oO78
 ### get user profile by id
-GET http://localhost:5000/api/profile/user/63494ae7ffb1e7376eb8ca04 HTTP/1.1
+GET http://localhost:5000/api/profile/user/6448c483ab5cbb7d27a3bd16 HTTP/1.1
 
 ### get all profiles
 GET http://localhost:5000/api/profile/users HTTP/1.1

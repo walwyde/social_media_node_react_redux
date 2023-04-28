@@ -44,7 +44,7 @@ exports.getProfileById = async (req, res) => {
     );
     if (!profile) return res.json("user not found");
     res.status(200).json(profile);
-  } catch (error) {
+  } catch (error) {   
     if (error.kind == "ObjectId") {
       res.json({ msg: "user not found" });
     }

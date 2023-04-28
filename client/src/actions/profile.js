@@ -103,8 +103,6 @@ export const getProfiles = () => async (dispatch) => {
     });
 
     const res = await axios.get("api/profile/users");
-    // const data = JSON.parse(res);
-    console.log(res)
 
     dispatch({
       type: load_profiles,
@@ -122,17 +120,17 @@ export const getProfiles = () => async (dispatch) => {
 
 export const getProfileById = (userId) => async (dispatch) => {
   try {
-    const response = await axios.get(`api/profile/${userId}`);
-    const profile = JSON.parse(response);
+    const response = await axios.get(`/api/profile/user/${userId}`);
 
     dispatch({
       type: load_profile,
-      payload: profile,
+      payload: response.data,
     });
   } catch (err) {
+    console.log(err)
     dispatch({
       type: profile_error,
-      payload: err.response.data,
+      payload: err.response,
     });
   }
 };
