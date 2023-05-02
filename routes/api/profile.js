@@ -4,6 +4,7 @@ const router = express.Router()
 const controller = require("../../controllers/profile")
 const mdlwre = require("../../middleware/index")
 
+
 router.get('/users', controller.getAllProfiles)
 
 router.get('/user/:id', controller.getProfileById)
