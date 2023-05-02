@@ -4,7 +4,7 @@ import { Link, withRouter, Redirect } from "react-router-dom";
 import { createProfile } from "../../../actions/profile";
 import { connect } from "react-redux";
 import { loadCurrentProfile } from "../../../actions/profile";
-import { spinner } from "../../layouts/Spinner";
+import { Spinner } from "../../layouts/Spinner";
 
 const EditProfile = ({
   createProfile,
@@ -256,7 +256,7 @@ const EditProfile = ({
     </Fragment>
   ) : (
     <Fragment>
-      {spinner()}
+      {Spinner()}
 
       <h1 className="large text-primary">Create Profile First</h1>
       <Link to="/dashboard" className="btn btn-primary">

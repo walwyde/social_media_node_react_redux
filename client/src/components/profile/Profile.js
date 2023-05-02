@@ -8,20 +8,23 @@ import { connect } from "react-redux";
 import Profileabout from "./Profileabout";
 import ProfileExperience from "./ProfileExperience";
 import ProfileEducation from "./ProfileEducation";
+import GithubRepos from "./GithubRepos";
+import { getRepos } from "../../actions/profile";
 
 const Profile = ({
   match,
   getProfileById,
-  profile: { profile, loading },
+  profile: { profile },
   auth,
+  getRepos,
 }) => {
-  console.log(match.params.id);
+  console.log(profile);
   useEffect(() => {
     getProfileById(match.params.id);
   }, []);
   return (
     <Fragment>
-      {profile === null || loading ? (
+      {profile === null || profile.loading ? (
         <Spinner />
       ) : (
         <Fragment>
@@ -30,7 +33,7 @@ const Profile = ({
           </Link>
 
           {auth.isAuthenticated &&
-            loading === false &&
+            profile.loading === false &&
             auth.user._id === profile.user._id && (
               <Link to="/edit-profile" className="btn btn-primary">
                 Edit Profile
@@ -48,6 +51,9 @@ const Profile = ({
           <div className="profile-edu bg-white p-2">
             <ProfileEducation education={profile.education} />
           </div>
+          <div class="profile-github">
+            <GithubRepos profile={profile} />
+          </div>
         </Fragment>
       )}
     </Fragment>
@@ -58,6 +64,7 @@ Profile.propTypes = {
   getProfileById: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
+  getRepos: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -65,4 +72,4 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
 });
 
-export default connect(mapStateToProps, { getProfileById })(Profile);
+export default connect(mapStateToProps, { getProfileById, getRepos })(Profile);

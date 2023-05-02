@@ -46,9 +46,7 @@ export const createProfile =
         ? await axios.put("api/profile/me", body, options)
         : await axios.post("/api/profile/me", body, options);
 
-      console.log(res);
-
-      if (!edit) history.push("/dashboard");
+      history.push("/dashboard");
 
       dispatch({
         type: load_profile,
@@ -83,8 +81,6 @@ export const addEdu = (data, history) => async (dispatch) => {
     const res = await axios.put("api/profile/education", body, options);
 
     history.push("/dashboard");
-
-    console.log(data);
 
     dispatch({
       type: load_profile,
@@ -137,13 +133,13 @@ export const getProfileById = (userId) => async (dispatch) => {
 
 export const getRepos = (username) => async (dispatch) => {
   try {
-    const data = await axios.get(`/api/github/${username}`);
+    const res = await axios.get(`/api/profile/github/${username}`);
 
-    const repos = await JSON.parse(data);
+    // const repos = await JSON.parse(data);
 
     dispatch({
       type: get_repos,
-      payload: repos,
+      payload: res.data,
       loading: false,
     });
   } catch (err) {
