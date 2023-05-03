@@ -48,7 +48,6 @@ exports.login = async (req, res) => {
           res.status(200).json(token)
         });
 
-    console.log(req.body);
   } catch (err) {
     console.log(err);
   }

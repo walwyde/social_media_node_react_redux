@@ -11,7 +11,7 @@ const AddEducation = ({ addEdu, history, profile: { profile, loading } }) => {
     fieldofstudy: "",
     from: "",
     to: "",
-    description: "",
+    description: "", 
   });
   const { school, degree, fieldofstudy, from, to, description } = formData;
 

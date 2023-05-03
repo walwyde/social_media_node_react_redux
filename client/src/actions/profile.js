@@ -9,6 +9,7 @@ import {
   clear_profile,
   delete_profile_error,
   get_repos,
+  no_repos
 } from "./types";
 import { setAlert } from "../actions/setAlert";
 
@@ -144,8 +145,8 @@ export const getRepos = (username) => async (dispatch) => {
     });
   } catch (err) {
     dispatch({
-      type: profile_error,
-      payload: err.response.data,
+      type: no_repos,
+      payload: err.response,
     });
   }
 };

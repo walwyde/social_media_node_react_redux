@@ -27,4 +27,4 @@ controller.newComment)
 
 router.delete('/:id/comments/:comment_id', mdlwre.auth, controller.deleteComment)
 
-module.exports = router
+module.exports = router 

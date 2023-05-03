@@ -2,9 +2,13 @@ import { combineReducers } from 'redux'
 import alert from './alert'
 import auth from './auth'
 import profile from './profile'
+import post from './post'
 
-export default combineReducers({
+ const rootReducer=combineReducers({
   alert,
+  post,
   profile,
-  auth,
+  auth
 })
+
+export default rootReducer

@@ -17,3 +17,9 @@ export const get_repos = 'get_repos'
 export const no_repos = 'no_repos'
 export const update_profile = 'update_profile'
 export const delete_account = 'delete_account'
+export const get_posts = 'get_posts'
+export const no_posts = 'no_posts'
+export const new_post = 'new_post'
+export const post_error = 'post_error'
+
+

@@ -19,6 +19,13 @@ import AddEducation from "./components/Dashboard/dasboardForms/Add-education";
 import AddExperience from "./components/Dashboard/dasboardForms/AddExperience";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
+import Posts from "./components/post/Posts";
+import Newpost from "./components/post/Newpost";
+import Editpost from "./components/post/Editpost";
+import Newcomment from "./components/post/Newcomment";
+
+
+
 if (localStorage.token) {
   setAxiosHeader(localStorage.token);
 }
@@ -41,6 +48,7 @@ const App = () => {
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/profiles" component={Profiles} />
                 <Route exact path="/profile/:id" component={Profile} />
+                <Route exact path="/posts" component={Posts} />
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
                 <PrivateRoute
                   exact
@@ -62,6 +70,10 @@ const App = () => {
                   path="/add-experience"
                   component={AddExperience}
                 />
+                <PrivateRoute exactpath='/new-post' component={Newpost} />
+                <PrivateRoute exactpath='/edit-post/:id' component={Editpost} />
+                <PrivateRoute exactpath='/comment/:id' component={Newcomment} />
+
               </Switch>
             </section>
           </Fragment>
