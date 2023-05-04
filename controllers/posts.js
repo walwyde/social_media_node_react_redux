@@ -39,8 +39,7 @@ exports.newPost = async (req, res) => {
 exports.deletePost = async (req, res) => {
   try {
     const post = await Post.findById(req.params.post_id)
-    console.log(post.user)
-    console.log(req.user.id)
+    
     if (!post) return res.status(404).json({msg: "post not found"})
     
     if(post.user.toString() !== req.user.id) return res.status(401).json({msg: "authorization denied"})

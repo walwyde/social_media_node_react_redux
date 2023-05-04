@@ -21,5 +21,7 @@ export const get_posts = 'get_posts'
 export const no_posts = 'no_posts'
 export const new_post = 'new_post'
 export const post_error = 'post_error'
+export const post_deleted = 'post_deleted'
+
 
 

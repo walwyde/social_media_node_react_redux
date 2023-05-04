@@ -70,9 +70,9 @@ const App = () => {
                   path="/add-experience"
                   component={AddExperience}
                 />
-                <PrivateRoute exactpath='/new-post' component={Newpost} />
-                <PrivateRoute exactpath='/edit-post/:id' component={Editpost} />
-                <PrivateRoute exactpath='/comment/:id' component={Newcomment} />
+                <PrivateRoute exact path='/new-post' component={Newpost} />
+                <PrivateRoute exact path='/edit-post/:id' component={Editpost} />
+                <PrivateRoute exact path='/comment/:id' component={Newcomment} />
 
               </Switch>
             </section>

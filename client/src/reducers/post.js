@@ -1,4 +1,4 @@
-import { get_posts, no_posts } from "../actions/types";
+import { get_posts, no_posts, post_deleted } from "../actions/types";
 
 const initialState = {
   posts: [],
@@ -22,6 +22,11 @@ export default function post(state = initialState, action) {
         loading: false,
         errors: payload,
       };
+      case post_deleted:
+        return {
+          ...state,
+          loading: false
+        }
       default:
         return state
   }

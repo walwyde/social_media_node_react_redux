@@ -22,6 +22,7 @@ const Newpost = ({newPost, history}) => {
 
     }
   return (
+    
     <div className="post-form">
         <div className="bg-primary p">
           <h3>Say Something...</h3>
@@ -38,19 +39,13 @@ const Newpost = ({newPost, history}) => {
           ></textarea>
           <input type="submit" className="btn btn-dark my-1" value="Submit" onClick={e => onSubmit(e)} />
         </form>
-      </div>
+      </div>)
 
-  )
 }
 
 Newpost.propTypes = {
   newPost: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
-  isAuthenticated: PropTypes.bool
 }
 
-const mapStateToProps = state => {
-  isAuthenticated: state.auth.isAuthenticated
-}
-
-export default connect(mapStateToProps, {newPost})(withRouter(Newpost))
+export default connect(null, {newPost})(withRouter(Newpost))

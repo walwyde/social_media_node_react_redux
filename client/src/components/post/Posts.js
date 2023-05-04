@@ -4,8 +4,10 @@ import { Spinner } from "../layouts/Spinner";
 import { getPosts } from "../../actions/post";
 import { connect } from "react-redux";
 import PostItem from "./PostItem";
+import {deletePost} from "../../actions/post";
 
-const Posts = ({ getPosts, post: { posts } }) => {
+
+const Posts = ({ getPosts, post: { posts, loading }, auth, deletePost }) => {
   useEffect(() => {
     getPosts();
   }, []);
@@ -15,16 +17,16 @@ const Posts = ({ getPosts, post: { posts } }) => {
       <p className="lead">
         <i className="fas fa-user"></i> Welcome to the community!
       </p>
-      {posts.length > 0 ? 
-        posts.map(post => (
-        <Fragment>
-          <div className="posts">
-            <PostItem post={post} />
-          </div>
-        </Fragment>
-        ))
-       : (
-        <Fragment>No Posts Here Yet</Fragment>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div className="posts">
+          {posts.length > 0 ? (
+            posts.map((post, index) => <PostItem key={post._id} post={post} auth={auth} />)
+          ) : (
+            <Fragment>No Posts Here Yet</Fragment>
+          )}
+        </div>
       )}
     </section>
   );
@@ -33,10 +35,13 @@ const Posts = ({ getPosts, post: { posts } }) => {
 Posts.propTypes = {
   post: PropTypes.object.isRequired,
   getPosts: PropTypes.func.isRequired,
+  deletePost: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   post: state.post,
+  auth: state.auth
 });
 
-export default connect(mapStateToProps, { getPosts })(Posts);
+export default connect(mapStateToProps, { getPosts, deletePost })(Posts);

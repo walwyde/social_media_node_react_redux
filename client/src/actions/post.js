@@ -1,4 +1,10 @@
-import { get_posts, no_posts, new_post, post_error } from "./types";
+import { 
+  get_posts, 
+  no_posts, 
+  new_post,
+  post_error,
+  post_deleted
+} from "./types";
 import { setAlert } from "./setAlert";
 import axios from "axios";
 
@@ -6,7 +12,6 @@ export const getPosts = () => async (dispatch) => {
   try {
     const res = await axios.get("/api/posts");
 
-    console.log(res);
 
     dispatch({
       type: get_posts,
@@ -26,27 +31,42 @@ export const newPost =
     const options = {
       headers: {
         "Content-Type": "application/json;charset=UTF-8",
-      }
-    }
+      },
+    };
     try {
+      const res = await axios.post("/api/posts", data, options);
 
-      const res = await axios.post('/api/posts', data, options)
-
-      history.push('/posts')
+      history.push("/posts");
 
       dispatch({
         type: new_post,
-        payload: res.data
-      })
-      dispatch(
-        setAlert('Your Post Has Been Created!', 'success')
-      )
+        payload: res.data,
+      });
+      dispatch(setAlert("Your Post Has Been Created!", "success"));
     } catch (error) {
-      setAlert('Something Went Wrong!!', 'danger')
+      setAlert("Something Went Wrong!!", "danger");
 
       dispatch({
         type: post_error,
-        payload: error.response
-      })
+        payload: error.response,
+      });
     }
   };
+
+export const deletePost = (_id) => async (dispatch) => {
+  try {
+    await axios.delete(`/api/posts/${_id}`);
+
+    dispatch({
+      type: post_deleted,
+    });
+    dispatch(setAlert("Post Deleted!", "danger"));
+
+  } catch (err) {
+
+    dispatch({
+      type: post_error,
+      payload: err.response,
+    });
+  }
+};
