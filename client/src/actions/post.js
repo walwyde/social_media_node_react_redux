@@ -3,7 +3,9 @@ import {
   no_posts, 
   new_post,
   post_error,
-  post_deleted
+  post_deleted,
+  unLike_post,
+  update_likes,
 } from "./types";
 import { setAlert } from "./setAlert";
 import axios from "axios";
@@ -59,14 +61,61 @@ export const deletePost = (_id) => async (dispatch) => {
 
     dispatch({
       type: post_deleted,
+      payload: _id,
     });
+
     dispatch(setAlert("Post Deleted!", "danger"));
 
   } catch (err) {
 
     dispatch({
       type: post_error,
-      payload: err.response,
+      payload: {msg: err.response.statusText, status: err.response.status}
+    });
+  }
+};
+
+export const likePost = (_id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/posts/likes/${_id}`);
+
+    dispatch({
+      type: update_likes,
+      payload: {
+        id: _id,
+        likes: res.data,
+      },
+    });
+
+  } catch (err) {
+
+    dispatch(setAlert("Something Went Wrong!!", "danger"));
+
+    dispatch({
+      type: post_error,
+      payload: {msg: err.response.statusText, status: err.response.status}
+    });
+  }
+};
+export const unlikePost = (_id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/posts/unlike/${_id}`);
+
+    dispatch({
+      type: unLike_post,
+      payload: {
+        id: _id,
+        likes: res.data,
+      },
+    });
+
+  } catch (err) {
+
+    dispatch(setAlert("Something Went Wrong!!", "danger"));
+
+    dispatch({
+      type: post_error,
+      payload: {msg: err.response.statusText, status: err.response.status}
     });
   }
 };

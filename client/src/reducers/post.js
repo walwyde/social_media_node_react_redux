@@ -1,9 +1,16 @@
-import { get_posts, no_posts, post_deleted } from "../actions/types";
+import {
+  get_posts,
+  no_posts,
+  post_deleted,
+  update_likes,
+  unLike_post,
+  post_error
+} from "../actions/types";
 
 const initialState = {
   posts: [],
   loading: true,
-  errors: {}
+  errors: {},
 };
 
 export default function post(state = initialState, action) {
@@ -22,12 +29,35 @@ export default function post(state = initialState, action) {
         loading: false,
         errors: payload,
       };
-      case post_deleted:
-        return {
-          ...state,
-          loading: false
-        }
-      default:
-        return state
+    case post_deleted:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post._id !== payload),
+        loading: false,
+      };
+    case update_likes:
+      return {
+        ...state,
+        posts: state.posts.map((post) =>
+          post._id === payload.id ? { ...post, likes: payload.likes } : post
+        ),
+        loading: false,
+      };
+    case unLike_post:
+      return {
+        ...state,
+        posts: state.posts.map((post) =>
+          post._id === payload.id ? { ...post, likes: payload.likes } : post
+        ),
+        loading: false,
+      };
+    case post_error:
+      return {
+        ...state,
+        errors: payload,
+        loading: false,
+      };
+    default:
+      return state;
   }
 }

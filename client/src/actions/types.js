@@ -22,6 +22,11 @@ export const no_posts = 'no_posts'
 export const new_post = 'new_post'
 export const post_error = 'post_error'
 export const post_deleted = 'post_deleted'
+export const unLike_post = 'unLike_post'
+export const update_likes = 'update_likes'
+export const update_comments = 'update_comments'
+export const delete_comment = 'delete_comment'
+
 
 
 
