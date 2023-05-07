@@ -22,6 +22,8 @@ const Editpost = props => {
   )
 }
 
-Editpost.propTypes = {}
+Editpost.propTypes = {
+  post: PropTypes.object.isRequired
+}
 
 export default Editpost

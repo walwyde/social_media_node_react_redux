@@ -5,6 +5,7 @@ import { getPosts } from "../../actions/post";
 import { connect } from "react-redux";
 import PostItem from "./PostItem";
 import {deletePost} from "../../actions/post";
+import Newpost from '../post/Newpost'
 
 
 const Posts = ({ getPosts, post: { posts, loading }, auth, deletePost }) => {
@@ -13,6 +14,7 @@ const Posts = ({ getPosts, post: { posts, loading }, auth, deletePost }) => {
   }, []);
   return (
     <section className="container">
+      < Newpost />
       <h1 className="large text-primary">Posts</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Welcome to the community!

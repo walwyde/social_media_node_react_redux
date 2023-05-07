@@ -7,6 +7,8 @@ const Newcomment = props => {
   )
 }
 
-Newcomment.propTypes = {}
+Newcomment.propTypes = {
+  post: PropTypes.object.isRequired
+}
 
 export default Newcomment

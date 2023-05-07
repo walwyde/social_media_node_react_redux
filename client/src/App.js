@@ -20,7 +20,6 @@ import AddExperience from "./components/Dashboard/dasboardForms/AddExperience";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import Posts from "./components/post/Posts";
-import Newpost from "./components/post/Newpost";
 import Editpost from "./components/post/Editpost";
 import Newcomment from "./components/post/Newcomment";
 
@@ -70,7 +69,6 @@ const App = () => {
                   path="/add-experience"
                   component={AddExperience}
                 />
-                <PrivateRoute exact path='/new-post' component={Newpost} />
                 <PrivateRoute exact path='/edit-post/:id' component={Editpost} />
                 <PrivateRoute exact path='/comment/:id' component={Newcomment} />
 

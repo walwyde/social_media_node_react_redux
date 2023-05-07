@@ -4,7 +4,8 @@ import {
   post_deleted,
   update_likes,
   unLike_post,
-  post_error
+  post_error,
+  new_post
 } from "../actions/types";
 
 const initialState = {
@@ -23,6 +24,12 @@ export default function post(state = initialState, action) {
         posts: payload,
         loading: false,
       };
+      case new_post:
+        return {
+          ...state,
+          posts: [payload, ...state.posts],
+          loading: false
+        }
     case no_posts:
       return {
         ...state,

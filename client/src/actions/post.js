@@ -35,9 +35,11 @@ export const newPost =
         "Content-Type": "application/json;charset=UTF-8",
       },
     };
+    const body =  JSON.stringify(data)
     try {
-      const res = await axios.post("/api/posts", data, options);
+      const res = await axios.post("/api/posts", body, options);
 
+      console.log(body)
       history.push("/posts");
 
       dispatch({
@@ -89,8 +91,6 @@ export const likePost = (_id) => async (dispatch) => {
 
   } catch (err) {
 
-    dispatch(setAlert("Something Went Wrong!!", "danger"));
-
     dispatch({
       type: post_error,
       payload: {msg: err.response.statusText, status: err.response.status}
@@ -111,7 +111,6 @@ export const unlikePost = (_id) => async (dispatch) => {
 
   } catch (err) {
 
-    dispatch(setAlert("Something Went Wrong!!", "danger"));
 
     dispatch({
       type: post_error,
