@@ -15,8 +15,12 @@ exports.newPost = async (req, res) => {
   const errors = validationResult(req)
   if(!errors.isEmpty()) return res.status(400).json({erors: errors.array()})
 
+  console.log(`backend ${req.body}`)
+  
   try {
     const user = await User.findById(req.user.id).select('-password')
+
+
 
     const post = new Post({
       user: req.user.id,

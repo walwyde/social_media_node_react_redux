@@ -1,6 +1,6 @@
-import { 
-  get_posts, 
-  no_posts, 
+import {
+  get_posts,
+  no_posts,
   new_post,
   post_error,
   post_deleted,
@@ -13,7 +13,6 @@ import axios from "axios";
 export const getPosts = () => async (dispatch) => {
   try {
     const res = await axios.get("/api/posts");
-
 
     dispatch({
       type: get_posts,
@@ -30,14 +29,16 @@ export const getPosts = () => async (dispatch) => {
 export const newPost =
   (data, history, edit = false) =>
   async (dispatch) => {
-    const options = {
+    const config = {
       headers: {
-        "Content-Type": "application/json;charset=UTF-8",
+        "Content-Type": "application/json",
       },
     };
-    // const body =  JSON.stringify(data)
+
+    console.log(data);
+
     try {
-      const res = await axios.post("/api/posts", data, options);
+      const res = await axios.post("/api/posts", data, config);
 
       history.push("/posts");
 
@@ -66,12 +67,10 @@ export const deletePost = (_id) => async (dispatch) => {
     });
 
     dispatch(setAlert("Post Deleted!", "danger"));
-
   } catch (err) {
-
     dispatch({
       type: post_error,
-      payload: {msg: err.response.statusText, status: err.response.status}
+      payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };
@@ -87,12 +86,10 @@ export const likePost = (_id) => async (dispatch) => {
         likes: res.data,
       },
     });
-
   } catch (err) {
-
     dispatch({
       type: post_error,
-      payload: {msg: err.response.statusText, status: err.response.status}
+      payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };
@@ -107,13 +104,10 @@ export const unlikePost = (_id) => async (dispatch) => {
         likes: res.data.likes,
       },
     });
-
   } catch (err) {
-
-
     dispatch({
       type: post_error,
-      payload: {msg: err.response.statusText, status: err.response.status}
+      payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };
