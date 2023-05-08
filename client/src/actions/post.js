@@ -35,11 +35,10 @@ export const newPost =
         "Content-Type": "application/json;charset=UTF-8",
       },
     };
-    const body =  JSON.stringify(data)
+    // const body =  JSON.stringify(data)
     try {
-      const res = await axios.post("/api/posts", body, options);
+      const res = await axios.post("/api/posts", data, options);
 
-      console.log(body)
       history.push("/posts");
 
       dispatch({
@@ -105,7 +104,7 @@ export const unlikePost = (_id) => async (dispatch) => {
       type: unLike_post,
       payload: {
         id: _id,
-        likes: res.data,
+        likes: res.data.likes,
       },
     });
 

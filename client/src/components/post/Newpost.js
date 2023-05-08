@@ -5,40 +5,35 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 const Newpost = ({ newPost, history }) => {
-  const [formData, setFormData] = useState('');
+  const [formData, setFormData] = useState({
+    text: ''
+  });
 
-  const onChange = (e) => {
-    setFormData(e.target.value);
-  };
+  const {text}  = formData
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    newPost(formData, history);
-    setFormData('')
-  };
   return (
     <div className="post-form">
       <div className="bg-primary p">
         <h3>Say Something...</h3>
       </div>
-      <form className="form my-1">
+      <form
+        className="form my-1"
+        onSubmit={(e) => {
+          e.preventDefault();
+          newPost(formData, history);
+          setFormData(' ');
+        }}
+      >
         <textarea
-          value={formData}
-          onChange={(e) => onChange(e)}
+          value={text}
+          onChange={(e) => setFormData({...formData, [e.target.name]: e.target.value})}
           name="text"
           cols="30"
           rows="5"
           placeholder="Create a post"
           required
         ></textarea>
-        <input
-          type="submit"
-          className="btn btn-dark my-1"
-          value="Submit"
-          onClick={(e) => {
-            onSubmit(e);
-          }}
-        />
+        <input type="submit" className="btn btn-dark my-1" value="Submit" />
       </form>
     </div>
   );
