@@ -27,7 +27,6 @@ exports.getUser = async (req, res) => {
   }
 }
 exports.newUser = async (req, res) => {
-  console.log(req.body)
   // input validations
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

@@ -7,6 +7,8 @@ const controller = require("../../controllers/posts")
 
 router.get("/", controller.getPosts)
 
+router.get("/:postId", controller.getPost)
+
 router.post('/',
 [mdlwre.auth, 
   check("text", "post text content cannot be empty").not().isEmpty()

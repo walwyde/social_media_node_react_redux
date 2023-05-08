@@ -4,9 +4,8 @@ import { Spinner } from "../layouts/Spinner";
 import { getPosts } from "../../actions/post";
 import { connect } from "react-redux";
 import PostItem from "./PostItem";
-import {deletePost} from "../../actions/post";
-import Newpost from '../post/Newpost'
-
+import { deletePost } from "../../actions/post";
+import Newpost from "../post/Newpost";
 
 const Posts = ({ getPosts, post: { posts, loading }, auth, deletePost }) => {
   useEffect(() => {
@@ -14,7 +13,7 @@ const Posts = ({ getPosts, post: { posts, loading }, auth, deletePost }) => {
   }, []);
   return (
     <section className="container">
-      < Newpost />
+      <Newpost />
       <h1 className="large text-primary">Posts</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Welcome to the community!
@@ -24,7 +23,9 @@ const Posts = ({ getPosts, post: { posts, loading }, auth, deletePost }) => {
       ) : (
         <div className="posts">
           {posts.length > 0 ? (
-            posts.map((post, index) => <PostItem key={post._id} post={post} auth={auth} />)
+            posts.map((post, index) => (
+              <PostItem key={post._id} post={post} auth={auth} showActions={true} />
+            ))
           ) : (
             <Fragment>No Posts Here Yet</Fragment>
           )}
@@ -43,7 +44,7 @@ Posts.propTypes = {
 
 const mapStateToProps = (state) => ({
   post: state.post,
-  auth: state.auth
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getPosts, deletePost })(Posts);

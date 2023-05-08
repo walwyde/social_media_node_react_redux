@@ -21,8 +21,7 @@ import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import Posts from "./components/post/Posts";
 import Editpost from "./components/post/Editpost";
-import Newcomment from "./components/post/Newcomment";
-
+import Post from "./components/post/Post";
 
 
 if (localStorage.token) {
@@ -70,7 +69,7 @@ const App = () => {
                   component={AddExperience}
                 />
                 <PrivateRoute exact path='/edit-post/:id' component={Editpost} />
-                <PrivateRoute exact path='/comment/:id' component={Newcomment} />
+                <PrivateRoute exact path='/post/:id' component={Post} />
 
               </Switch>
             </section>

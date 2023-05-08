@@ -11,12 +11,20 @@ exports.getPosts = async (req, res) => {
     console.log(err)
   }
 }
+exports.getPost = async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.postId)
+   res.status(200).json(post)
+  } catch(err) {
+    console.log(err)
+  }
+}
 exports.newPost = async (req, res) => {
   const errors = validationResult(req)
   if(!errors.isEmpty()) return res.status(400).json({erors: errors.array()})
 
   console.log(`backend ${req.body}`)
-  
+
   try {
     const user = await User.findById(req.user.id).select('-password')
 
@@ -98,6 +106,7 @@ exports.unLike = async (req, res) => {
   }
 }
 exports.newComment = async (req, res) => {
+
   const errors = validationResult(req)
   if(!errors.isEmpty()) return res.status(400).json({errors: errors.array()})
 
@@ -129,12 +138,17 @@ exports.deleteComment = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id)
 
+
     if(!post) return res.status(404).json({msg: "post not found"})
 
+    console.log(post.comments.map(comment => comment.user.toString().trim()))
 
-    if(post.comments.find(comment => comment.user.toString() !== req.user.id)) return res.status(400).json({msg: "authorization denied"})
+    console.log(`user ${req.user.toString()}`)
+    
+    if(post.comments.map(comment => comment.user.toString() !== req.user.id)) return res.status(400).json({msg: "authorization denied"})
 
     const commentIndex = post.comments.map(comment => comment.id.toString()).indexOf(req.params.comment_id)
+
 
     if(commentIndex === -1) return res.status(404).json({msg: "comment not found"})
 
@@ -145,7 +159,7 @@ exports.deleteComment = async (req, res) => {
 
     res.json({msg: "comment deleted", comments: post.comments})
   } catch (err) {
-    console.log(err.message)
+    console.log(err)
     if(err.kind == 'ObjectId') return res.status(404).json({msg: "invalid Object_id"})
     res.status(500).json({msg: "server error"})
   }

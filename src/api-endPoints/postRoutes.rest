@@ -15,3 +15,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiJ5b2JlI
 ### get all posts
 
 GET http://localhost:5000/api/posts HTTP/1.1
+
+
+### get post
+GET http://localhost:5000/api/posts/645826f8a4b12629732bb17f

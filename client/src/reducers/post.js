@@ -1,11 +1,16 @@
 import {
   get_posts,
+  get_post,
+  no_post,
   no_posts,
   post_deleted,
   update_likes,
   unLike_post,
   post_error,
-  new_post
+  new_post,
+  new_comment,
+  comment_error,
+  delete_comment,
 } from "../actions/types";
 
 const initialState = {
@@ -24,12 +29,24 @@ export default function post(state = initialState, action) {
         posts: payload,
         loading: false,
       };
-      case new_post:
-        return {
-          ...state,
-          posts: [payload, ...state.posts],
-          loading: false
-        }
+    case get_post:
+      return {
+        ...state,
+        post: payload,
+        loading: false,
+      };
+    case no_post:
+      return {
+        ...state,
+        errors: payload,
+        loading: false,
+      };
+    case new_post:
+      return {
+        ...state,
+        posts: [payload, ...state.posts],
+        loading: false,
+      };
     case no_posts:
       return {
         ...state,
@@ -64,6 +81,26 @@ export default function post(state = initialState, action) {
         errors: payload,
         loading: false,
       };
+    case new_comment:
+      return {
+        ...state,
+        post: {
+          ...state.post, comments: payload.comments
+        },
+        loading: false,
+      };
+      case comment_error:
+        return {
+          ...state,
+          errors: {payload},
+          loading: false
+        }
+        case delete_comment:
+          return {
+            ...state,
+            post: {...state.post, comments: state.post.comments.filter(comment => comment._id !== payload)},
+            loading: false
+          }
     default:
       return state;
   }
