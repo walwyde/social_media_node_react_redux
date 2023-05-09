@@ -27,7 +27,7 @@ const Comment = ({
         {auth.isAuthenticated && auth.user._id === user && (
           <button
             type="button"
-            class="btn btn-danger"
+            className="btn btn-danger"
             onClick={(e) => {
               e.preventDefault()
               deleteComment(post._id, _id);

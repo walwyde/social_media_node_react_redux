@@ -11,6 +11,7 @@ import {
   new_comment,
   comment_error,
   delete_comment,
+  update_post
 } from "../actions/types";
 
 const initialState = {
@@ -47,6 +48,12 @@ export default function post(state = initialState, action) {
         posts: [payload, ...state.posts],
         loading: false,
       };
+      case update_post:
+      return {
+        ...state,
+        posts: [...state.posts],
+        loading: false
+      }
     case no_posts:
       return {
         ...state,

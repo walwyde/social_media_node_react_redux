@@ -149,7 +149,7 @@ exports.editProfile = async (req, res) => {
     if (profile) {
       profile = await Profile.findOneAndUpdate(
         { user: req.user.id },
-        { $set: profileFields }
+        { $set: profileFields } 
       );
     }
     res.status(201).json(profile);
@@ -165,7 +165,6 @@ exports.addExperience = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
 
   let { title, company, location, from, to, current, description } = req.body;
-  console.log(req.body);
   try {
     if (!to || to === "" || to === null) current = true;
 

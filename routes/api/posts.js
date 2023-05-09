@@ -15,6 +15,12 @@ router.post('/',
 ], 
 controller.newPost)
 
+router.put('/:postId',
+[mdlwre.auth, 
+  check("text", "post text content cannot be empty").not().isEmpty()
+], 
+controller.editPost)
+
 router.delete('/:post_id', mdlwre.auth, controller.deletePost)
 
 router.put('/likes/:post_id', mdlwre.auth, controller.addLike)

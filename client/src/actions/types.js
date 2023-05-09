@@ -29,3 +29,5 @@ export const update_likes = "update_likes";
 export const new_comment = "new_comment";
 export const comment_error = "comment_error";
 export const delete_comment = "delete_comment";
+export const update_post = "update_post";
+

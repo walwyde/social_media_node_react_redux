@@ -11,6 +11,7 @@ import {
   new_comment,
   comment_error,
   delete_comment,
+  update_post
 } from "./types";
 import { setAlert } from "./setAlert";
 import axios from "axios";
@@ -47,7 +48,7 @@ export const getPost = (id) => async (dispatch) => {
 };
 
 export const newPost =
-  (data, history, edit = false) =>
+  (data, postId = null, edit = false) =>
   async (dispatch) => {
     const config = {
       headers: {
@@ -55,18 +56,17 @@ export const newPost =
       },
     };
 
-    console.log(data);
-
     try {
-      const res = await axios.post("/api/posts", data, config);
-
-      history.push("/posts");
+      const res =
+        edit === false
+          ? await axios.post("/api/posts", data, config)
+          : await axios.put(`/api/posts/${postId}`, data, config);
 
       dispatch({
-        type: new_post,
+        type: edit === false ? new_post : update_post,
         payload: res.data,
       });
-      dispatch(setAlert("Your Post Has Been Created!", "success"));
+      dispatch(setAlert(edit === false ? `Your Post Has Been Created!` : `Your Post Has Been Edited`, "success"));
     } catch (error) {
       setAlert("Something Went Wrong!!", "danger");
 
@@ -163,7 +163,7 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
       payload: commentId,
     });
   } catch (err) {
-    console.log(err)
+    console.log(err);
     dispatch({
       type: comment_error,
       payload: { msg: err.response.statusText, status: err.response.status },

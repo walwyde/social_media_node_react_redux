@@ -2,11 +2,17 @@ import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { getPost, addComment, deleteComment } from "../../actions/post";
+import {
+  getPost,
+  addComment,
+  deleteComment,
+  deletePost,
+  likePost,
+  unlikePost,
+} from "../../actions/post";
 import { Spinner } from "../layouts/Spinner";
 import PostItem from "./PostItem";
 import CommentItem from "./CommentItem";
-// import { addComment } from "../../actions/post";
 import CommentForm from "./CommentForm";
 
 const Post = ({
@@ -16,6 +22,9 @@ const Post = ({
   auth,
   addComment,
   deleteComment,
+  deletePost,
+  likePost,
+  unlikePost,
 }) => {
   useEffect(() => {
     getPost(match.params.id);
@@ -28,7 +37,21 @@ const Post = ({
         Back To Posts
       </Link>
 
-      <PostItem post={post} auth={auth} showActions={false} />
+      {auth.isAuthenticated && post.user === auth.user._id && (
+        <Link to={`/edit/post/${post._id}`} className={"btn"}>
+          Edit This Post
+        </Link>
+      )}
+
+      <PostItem
+        post={post}
+        auth={auth}
+        showActions={false}
+        deleteComment={deleteComment}
+        deletePost={deletePost}
+        likePost={likePost}
+        unlikePost={unlikePost}
+      />
 
       <CommentForm addComment={addComment} post={post} />
 
@@ -52,6 +75,9 @@ Post.propTypes = {
   auth: PropTypes.object.isRequired,
   addComment: PropTypes.func.isRequired,
   deleteComment: PropTypes.func.isRequired,
+  deletePost: PropTypes.func.isRequired,
+  likePost: PropTypes.func.isRequired,
+  unlikePost: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -59,6 +85,11 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getPost, addComment, deleteComment })(
-  Post
-);
+export default connect(mapStateToProps, {
+  getPost,
+  addComment,
+  deleteComment,
+  deletePost,
+  likePost,
+  unlikePost,
+})(Post);

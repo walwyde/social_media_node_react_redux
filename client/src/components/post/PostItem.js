@@ -2,8 +2,6 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
-import { connect } from "react-redux";
-import { deletePost, likePost, unlikePost } from "../../actions/post";
 
 const PostItem = ({
   post: { name, avatar, date, user, _id, comments, likes, text },
@@ -74,4 +72,4 @@ PostItem.propTypes = {
   showActions: PropTypes.bool,
 };
 
-export default connect(null, { deletePost, likePost, unlikePost })(PostItem);
+export default PostItem;

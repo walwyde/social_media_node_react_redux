@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { newPost } from "../../actions/post";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
 
-const Newpost = ({ newPost, history }) => {
+const Newpost = ({ newPost }) => {
   const [text, setText] = useState('');
 
   return (
@@ -16,7 +13,7 @@ const Newpost = ({ newPost, history }) => {
         className="form my-1"
         onSubmit={(e) => {
           e.preventDefault();
-          newPost({text}, history);
+          newPost({text});
           setText(' ');
         }}
       >
@@ -37,7 +34,6 @@ const Newpost = ({ newPost, history }) => {
 
 Newpost.propTypes = {
   newPost: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
 };
 
-export default connect(null, { newPost })(withRouter(Newpost));
+export default Newpost;
