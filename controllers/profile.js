@@ -287,7 +287,6 @@ exports.getGitRepo = async (req, res) => {
           .json({ msg: "something went wrong" });
       res.json(JSON.parse(body));
     });
-    console.log(options);
   } catch (err) {
     console.log(err);
     res.status(500).json({ msg: "server error" });

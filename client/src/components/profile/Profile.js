@@ -18,7 +18,6 @@ const Profile = ({
   auth,
   getRepos,
 }) => {
-  console.log(profile);
   useEffect(() => {
     getProfileById(match.params.id);
   }, []);
@@ -51,7 +50,7 @@ const Profile = ({
           <div className="profile-edu bg-white p-2">
             <ProfileEducation education={profile.education} />
           </div>
-          <div class="profile-github">
+          <div className="profile-github">
             <GithubRepos profile={profile} />
           </div>
         </Fragment>

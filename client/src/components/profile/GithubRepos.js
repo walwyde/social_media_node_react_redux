@@ -7,10 +7,9 @@ const GithubRepos = ({ profile: { profile, repos }, getRepos }) => {
   useEffect(() => {
     getRepos(profile.githubusername);
   }, [getRepos]);
-
   return (
     <div>
-      <h2 class="text-primary my-1">
+      <h2 className="text-primary my-1">
         <i className="fab fa-github"></i> Github Repos
       </h2>
       {repos.length > 0 ? (
@@ -45,7 +44,7 @@ const GithubRepos = ({ profile: { profile, repos }, getRepos }) => {
 };
 
 GithubRepos.propTypes = {
-  state: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
   getRepos: PropTypes.func.isRequired,
 };
 
